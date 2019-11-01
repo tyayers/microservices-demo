@@ -1,32 +1,20 @@
-FROM node:8-alpine as base
+FROM node:8
 
-FROM base as builder
-
-# Some packages (e.g. @google-cloud/profiler) require additional
-# deps for post-install scripts
-RUN apk add --update --no-cache \
-    python \
-    make \
-    g++
-
+# Create app directory
 WORKDIR /usr/src/app
 
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install --only=production
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
 
-FROM base
-
-RUN GRPC_HEALTH_PROBE_VERSION=v0.2.0 && \
-    wget -qO/bin/grpc_health_probe https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/${GRPC_HEALTH_PROBE_VERSION}/grpc_health_probe-linux-amd64 && \
-    chmod +x /bin/grpc_health_probe
-
-WORKDIR /usr/src/app
-
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-
+# Bundle app source
 COPY . .
 
-EXPOSE 7000
+EXPOSE 8080
 
-ENTRYPOINT [ "node", "server.js" ]
+CMD [ "node", "src" ]
