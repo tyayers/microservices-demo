@@ -11,7 +11,7 @@ spec:
       labels:
         app: currencyservice
     spec:
-      terminationGracePeriodSeconds: 5
+      terminationGracePeriodSeconds: 6
       containers:
       - name: server
         image: eu.gcr.io/apigee-quest-v2/currencyservice:latest

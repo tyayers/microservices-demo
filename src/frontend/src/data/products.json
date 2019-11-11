@@ -1,56 +1,60 @@
-[
-    {
-        "Id": "OLJCESPC7Z",
-        "Name": "Vintage Typewriter",
-        "Picture": "img/products/typewriter.jpg",
-        "Price": 67.98
-    },
-    {
-        "Id": "66VCHSJNUP",
-        "Name": "Vintage Camera Lens",
-        "Picture": "img/products/camera-lens.jpg",
-        "Price": 12.48
-    },
-    {
-        "Id": "1YMWWN1N4O",
-        "Name": "Home Barista Kit",
-        "Picture": "img/products/barista-kit.jpg",
-        "Price": 123.99
-    },
-    {
-        "Id": "L9ECAV7KIM",
-        "Name": "Terrarium",
-        "Picture": "img/products/terrarium.jpg",
-        "Price": 34.44
-    },
-    {
-        "Id": "2ZYFJ3GM2N",
-        "Name": "Film Camera",
-        "Picture": "img/products/film-camera.jpg",
-        "Price": 2244.99
-    },
-    {
-        "Id": "0PUK6V6EV0",
-        "Name": "Vintage Record Player",
-        "Picture": "img/products/record-player.jpg",
-        "Price": 65.50
-    },
-    {
-        "Id": "LS4PSXUNUM",
-        "Name": "Metal Camping Mug",
-        "Picture": "img/products/camp-mug.jpg",
-        "Price": 24.33
-    },
-    {
-        "Id": "9SIQT8TOJO",
-        "Name": "City Bike",
-        "Picture": "img/products/city-bike.jpg",
-        "Price": 789.50
-    },
-    {
-        "Id": "6E92ZMYYFZ",
-        "Name": "Air Plant",
-        "Picture": "img/products/air-plant.jpg",
-        "Price": 789.50
-    }                                   
-]
+{
+    "default":
+        [
+            {
+                "Id": "OLJCESPC7Z",
+                "Name": "Vintage Typewriter",
+                "Picture": "img/products/typewriter.jpg",
+                "Price": 67.98
+            },
+            {
+                "Id": "66VCHSJNUP",
+                "Name": "Vintage Camera Lens",
+                "Picture": "img/products/camera-lens.jpg",
+                "Price": 12.48
+            },
+            {
+                "Id": "1YMWWN1N4O",
+                "Name": "Home Barista Kit",
+                "Picture": "img/products/barista-kit.jpg",
+                "Price": 123.99
+            },
+            {
+                "Id": "L9ECAV7KIM",
+                "Name": "Terrarium",
+                "Picture": "img/products/terrarium.jpg",
+                "Price": 34.44
+            },
+            {
+                "Id": "2ZYFJ3GM2N",
+                "Name": "Film Camera",
+                "Picture": "img/products/film-camera.jpg",
+                "Price": 2244.99
+            },
+            {
+                "Id": "0PUK6V6EV0",
+                "Name": "Vintage Record Player",
+                "Picture": "img/products/record-player.jpg",
+                "Price": 65.50
+            },
+            {
+                "Id": "LS4PSXUNUM",
+                "Name": "Metal Camping Mug",
+                "Picture": "img/products/camp-mug.jpg",
+                "Price": 24.33
+            },
+            {
+                "Id": "9SIQT8TOJO",
+                "Name": "City Bike",
+                "Picture": "img/products/city-bike.jpg",
+                "Price": 789.50
+            },
+            {
+                "Id": "6E92ZMYYFZ",
+                "Name": "Air Plant",
+                "Picture": "img/products/air-plant.jpg",
+                "Price": 789.50
+            }                                   
+        ],
+    "baby": []            
+}

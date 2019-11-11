@@ -12,11 +12,6 @@ dotenv.config();
 // defining the Express app
 const app = express();
 
-// defining an array to work as the database (temporary solution)
-const ads = [
-  {title: 'Hello, world (again)!'}
-];
-
 // adding Helmet to enhance your API's security
 app.use(helmet());
 
@@ -41,13 +36,20 @@ app.get('/productcatalogservice/v1/product/:productid', (req, res) => {
 
   var data = JSON.parse(fs.readFileSync("data/products.json"));
 
-  data.products.forEach(function(item, index) {
-    if(item.id == productid) {
-      res.send(item);
-    }
-  });
+  var foundItem = false;
+  for (const [key, value] of Object.entries(data)) {
+    for(const index in data[key]) {
+      var item = data[key][index];
 
-  
+      if(item.id == productid) {
+        res.send(item);
+        foundItem = true;
+        break;
+      }
+    }
+
+    if (foundItem) break;
+  }
 });
 
 app.get('/product-catalog-service/search-products', (req, res) => {

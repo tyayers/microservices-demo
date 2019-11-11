@@ -1,5 +1,5 @@
 {
-  "products": [
+  "adults": [
       {
           "id": "OLJCESPC7Z",
           "name": "Vintage Typewriter",
@@ -72,5 +72,39 @@
           "priceUsd": 12.29,
           "categories": ["gardening"]
       }
+  ],
+  "kids": [
+    {
+        "id": "9SIQT8TOJ1",
+        "name": "Bike Banana Holder",
+        "description": "This banana holder will keep your banana fresh on your way to school.",
+        "picture": "/img/products/banana.jpg",
+        "priceUsd": 789.50,
+        "categories": ["cycling"]
+    },
+    {
+        "id": "6E92ZMYYF1",
+        "name": "Baby Hipster Mustache",
+        "description": "This Baby Hipster Mustache will give your baby just the right classic look.",
+        "picture": "/img/products/mustache.jpg",
+        "priceUsd": 12.29,
+        "categories": ["accessories"]
+    },
+    {
+        "id": "6E923MYYF1",
+        "name": "Organic Cotton Mouse Finger Puppets",
+        "description": "These mouse finger puppets are from 100% organic cotton, no mice were harmed in the production of these puppets.",
+        "picture": "/img/products/finger-puppets.jpg",
+        "priceUsd": 8.32,
+        "categories": ["toys"]
+    },
+    {
+        "id": "6E573MYYF1",
+        "name": "Hipster Baby Scary Sticker",
+        "description": "These Hipster Baby stickers will scare you out of ever having kids.",
+        "picture": "/img/products/hipster-baby-sticker.jpg",
+        "priceUsd": 3.98,
+        "categories": ["toys"]
+    }           
   ]
 }

@@ -50,8 +50,6 @@ spec:
   - match:
     - uri: 
         prefix: "/"               
-    # rewrite:
-    #   uri: "/"        
     route:
     - destination:
         host: frontend

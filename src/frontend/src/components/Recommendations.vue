@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="products.length > 0">
         <h5 class="text-muted">Products you might like</h5>
         <div class="row my-2 py-3">
             <div v-for="product in products" class="col-sm-6 col-md-4 col-lg-3">
@@ -33,14 +33,31 @@ export default {
   mounted() {
     var router = this.$router;
     var pathArray = window.location.pathname.split('/');
-    var url = process.env.VUE_APP_RECOMMENDATION_SVC_URL + "/recommendations/" + pathArray[pathArray.length-1] + "?api_key=" + localStorage.getItem("RECOMMENDATION_KEY");;
+    var recUrl = process.env.VUE_APP_RECOMMENDATION_SVC_URL + "/v1/recommendations/" + pathArray[pathArray.length-1] + "?api_key=" + localStorage.getItem("RECOMMENDATION_KEY");;
 
-    axios({ method: "GET", "url": url, headers: {"x-api-key": localStorage.getItem("RECOMMENDATION_KEY")}}).then(result => {
-        this.products = result.data;
+    axios({ method: "GET", "url": recUrl, headers: {"x-api-key": localStorage.getItem("RECOMMENDATION_KEY")}}).then(result => {
+        var recommendations = result.data;
+
+        if (recommendations != undefined && recommendations.length > 0) {
+            
+            for (var i = 0; i < recommendations.length; i++) {
+                var prodUrl = process.env.VUE_APP_PRODUCT_SVC_URL + "/v1/product/" + recommendations[i] + "?api_key=" + localStorage.getItem("PRODUCT_KEY");;
+                axios({ method: "GET", "url": prodUrl, headers: {"x-api-key": localStorage.getItem("PRODUCT_KEY")}}).then(result => {
+                    this.products.push(result.data);
+                }).catch(function (error) {
+                    // handle error
+                    console.log(error);
+                    // Don't go to config because of recommendations
+                    //router.replace('/config');
+                });  
+            }
+        }
     }).catch(function (error) {
         // handle error
         console.log(error);
-        router.replace('/config');
+
+        // The recommendationservice isn't so important, we won't go to config if the connection is broken
+        //router.replace('/config');
     });
   },  
   props: {

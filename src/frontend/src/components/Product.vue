@@ -10,8 +10,8 @@
                     <div class="col-12 col-lg-7">
                             <h2>{{product.name}}</h2>
                             
-                            <p class="text-muted">
-                                {{ $root.currency + " " + product.priceUsd }}
+                            <p class="text-muted" v-if="product.price">
+                                {{ $root.currency + " " + product.price }}
                             </p>
                             <hr/>
                             <p>
@@ -65,14 +65,41 @@ export default {
 
         axios({ method: "GET", "url": url, headers: {"x-api-key": localStorage.getItem("PRODUCT_KEY")}}).then(result => {
             this.product = result.data;
+            this.refreshPrice(this.product);
         }).catch(function (error) {
             // handle error
             console.log(error);
             router.replace('/config');
-        });;
-  },  
+        });
+  },
+    methods: {
+        refreshPrice(product) {
+            var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/v1/convert?api_key=" + localStorage.getItem("PRODUCT_KEY");
+            var me = this;
+            axios.post(url, {
+                priceUsd: product.priceUsd,
+                toCurrency: this.$root.currency
+            })
+            .then(function (response) {
+                product.price = parseFloat(response.data.price);
+                me.$forceUpdate(); 
+            })
+            .catch(function (error) {
+                console.log(error);
+            });             
+        }
+    },  
   props: {
-  },  
+  },
+    watch: {
+        '$root.currency': function (val) {
+            if (this.$root.currency == "USD")
+                this.product.price = this.product.priceUsd;
+            else {
+                this.refreshPrice(this.product);
+            }
+        }
+    },  
   components: {
     Recommendations
   }

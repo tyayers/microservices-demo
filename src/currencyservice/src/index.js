@@ -27,44 +27,23 @@ app.use(morgan('combined'));
 app.get('/currencyservice/v1/currencies', (req, res) => {
 
   var data = JSON.parse(fs.readFileSync("data/currency_conversion.json"));  
-  // TODO only send object keys
   res.send(Object.keys(data));
 });
 
-app.post('/currencyservice/v1/convert', (req, res) => {
-    try {
-        _getCurrencyData((data) => {
-            const request = call.request;
+app.post('/currencyservice/v1/convert', (req, res) => {  
+  console.log(req.body);
+  var data = JSON.parse(fs.readFileSync("data/currency_conversion.json"));
 
-            // Convert: from_currency --> EUR
-            const from = request.from;
-            const euros = _carry({
-            units: from.units / data[from.currency_code],
-            nanos: from.nanos / data[from.currency_code]
-            });
+  var result = {
+    price: parseFloat((req.body.priceUsd * (1 / data["USD"])) * data[req.body.toCurrency]).toFixed(2)
+  }
 
-            euros.nanos = Math.round(euros.nanos);
+  console.log(result);
 
-            // Convert: EUR --> to_currency
-            const result = _carry({
-            units: euros.units * data[request.to_code],
-            nanos: euros.nanos * data[request.to_code]
-            });
-
-            result.units = Math.floor(result.units);
-            result.nanos = Math.floor(result.nanos);
-            result.currency_code = request.to_code;
-
-            logger.info(`conversion request successful`);
-            callback(null, result);
-        });
-    } catch (err) {
-        //logger.error(`conversion request failed: ${err}`);
-        callback(err.message);
-    }
+  res.send(result);
 });
 
-app.get('/currencyservice/health', (req, res) => {
+app.get('/currencyservice/v1/health', (req, res) => {
 
   res.send("Service is healthy.");
 });

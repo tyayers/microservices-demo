@@ -1,17 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: frontend-v1
+  labels:
+    version: v1
 spec:
   selector:
     matchLabels:
       app: frontend
+      version: v1
   template:
     metadata:
       labels:
         app: frontend
+        version: v1
     spec:
-      terminationGracePeriodSeconds: 5
+      terminationGracePeriodSeconds: 4
       containers:
       - name: server
         image: eu.gcr.io/apigee-quest-v2/frontend:latest
@@ -22,6 +26,39 @@ spec:
         env:
         - name: PORT
           value: "8080"
+        - name: SHOW_HIPSTER_KIDS
+          value: "false"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-v2
+  labels:
+    version: v2
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: frontend
+        version: v2
+    spec:
+      terminationGracePeriodSeconds: 4
+      containers:
+      - name: server
+        image: eu.gcr.io/apigee-quest-v2/frontend:latest
+        imagePullPolicy: Always
+        ports:
+          - name: http
+            containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: SHOW_HIPSTER_KIDS
+          value: "true"
 ---
 apiVersion: v1
 kind: Service
