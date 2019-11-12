@@ -5,9 +5,9 @@
         </div>
 
         <div v-show="!authorized && !authorizing">
-            <div><img width="300px" style="opacity: .4; margin: 60px;" src="img/dino2.jpg"/></div>
+            <div><img width="300px" style="opacity: .5; margin: 60px;" src="img/hipster-admin.jpg"/></div>
       
-            <button type="button" v-on:click="authorize" class="btn btn-info config-div">Are you the admin? Click here to update the config...</button>
+            <button type="button" v-on:click="authorize" class="btn btn-info config-div">Are you the Hipster Admin? Click here to update the config...</button>
         </div>
 
         <div v-show="authorizing" style="text-align: left; margin: 30px;">

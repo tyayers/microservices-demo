@@ -1,3 +1,4 @@
+const tracer = require('@google-cloud/trace-agent').start();
 const express = require("express");
 const axios = require('axios');
 const history = require('connect-history-api-fallback-exclusions');

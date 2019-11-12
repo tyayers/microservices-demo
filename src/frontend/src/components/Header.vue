@@ -7,7 +7,7 @@
                 </a>
                 
                 <form class="form-inline ml-auto" method="POST" action="/setCurrency" id="currency_form">
-                    <select name="currency_code" class="form-control"
+                    <select v-if="currencies.length > 0" name="currency_code" class="form-control"
                      @change="onCurrencyChange($event)" style="width:auto;">
                         <option v-for="currency in currencies" v-bind:key="currency" :value="currency" :selected="currency == $root.currency ? true : false">{{currency}}</option>
                     </select>

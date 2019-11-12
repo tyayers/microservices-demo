@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@google-cloud/trace-agent": "^4.2.3",
     "axios": "^0.19.0",
     "connect-history-api-fallback": "^1.6.0",
     "connect-history-api-fallback-exclusions": "^1.5.1",

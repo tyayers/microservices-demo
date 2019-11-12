@@ -12,7 +12,7 @@
                     personal style. Start shopping hip and vintage items now!
                 </p>
 
-                <div v-if="showHipsterKids" style="font-family: Roboto"><a href="#" v-on:click="goToKids();"><h3><i>Check out the latest addition in the family:  </i> <img src="img/hipster-kids.png" width="100px"></h3></a></div>
+                <div v-if="showHipsterKids"><a href="#" v-on:click="goToKids();"><img src="img/kids-banner.png"></h3></a></div>
             </div>
         </section>
         <div class="py-5 bg-light">
@@ -102,7 +102,7 @@ export default {
     data () {
         return {
             products: [],
-            showHipsterKids: true
+            showHipsterKids: false
         }
     },
     mounted() {
@@ -122,12 +122,6 @@ export default {
                     }
                 }
             }
-
-            var me = this;
-            setTimeout(function() {
-                me.$forceUpdate();
-            }, 1000);
-            
         })
         .catch(function (error) {
             // handle error

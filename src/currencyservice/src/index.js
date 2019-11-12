@@ -1,4 +1,5 @@
 // importing the dependencies
+const tracer = require('@google-cloud/trace-agent').start();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
