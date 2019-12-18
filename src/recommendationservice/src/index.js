@@ -27,7 +27,7 @@ app.use(cors());
 app.use(morgan('combined'));
 
 // defining an endpoint to return all ads
-app.get('/recommendationservice/v1/recommendations/:productid', (req, res) => {
+app.get('/recommendations/:productid', (req, res) => {
   var productid = req.params.productid;
   var data = JSON.parse(fs.readFileSync("data/recommendations.json"));
 

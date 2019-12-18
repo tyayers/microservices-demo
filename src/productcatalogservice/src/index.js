@@ -26,13 +26,13 @@ app.use(cors());
 app.use(morgan('combined'));
 
 // defining an endpoint to return all ads
-app.get('/productcatalogservice/v1/products', (req, res) => {
+app.get('/products', (req, res) => {
 
   var data = fs.readFileSync("data/products.json");  
   res.send(data);
 });
 
-app.get('/productcatalogservice/v1/product/:productid', (req, res) => {
+app.get('/product/:productid', (req, res) => {
   var productid = req.params.productid;
 
   var data = JSON.parse(fs.readFileSync("data/products.json"));
@@ -53,44 +53,11 @@ app.get('/productcatalogservice/v1/product/:productid', (req, res) => {
   }
 });
 
-app.get('/product-catalog-service/search-products', (req, res) => {
-  res.send(ads);
+app.get('/search-products', (req, res) => {
+  res.send({message: "Not yet implemented."});
 });
 
-app.post('/currency-service/convert', (req, res) => {
-    try {
-        _getCurrencyData((data) => {
-            const request = call.request;
-
-            // Convert: from_currency --> EUR
-            const from = request.from;
-            const euros = _carry({
-            units: from.units / data[from.currency_code],
-            nanos: from.nanos / data[from.currency_code]
-            });
-
-            euros.nanos = Math.round(euros.nanos);
-
-            // Convert: EUR --> to_currency
-            const result = _carry({
-            units: euros.units * data[request.to_code],
-            nanos: euros.nanos * data[request.to_code]
-            });
-
-            result.units = Math.floor(result.units);
-            result.nanos = Math.floor(result.nanos);
-            result.currency_code = request.to_code;
-
-            logger.info(`conversion request successful`);
-            callback(null, result);
-        });
-    } catch (err) {
-        //logger.error(`conversion request failed: ${err}`);
-        callback(err.message);
-    }
-});
-
-app.get('/productcatalogservice/health', (req, res) => {
+app.get('/health', (req, res) => {
 
   res.send("Service is healthy.");
 });

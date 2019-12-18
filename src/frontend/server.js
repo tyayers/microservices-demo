@@ -17,7 +17,7 @@ app.use(express.static('dist'));
 
 
 // defining an endpoint to return all currencies
-app.get('/parameters/v1/:name', (req, res) => {
+app.get('/parameters/:name', (req, res) => {
     var name = req.params.name;
     console.log("parameter: " + name + "=" + process.env[name]);
     res.send({result: process.env[name]});

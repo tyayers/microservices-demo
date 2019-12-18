@@ -33,7 +33,7 @@ export default {
   mounted() {
     var router = this.$router;
     var pathArray = window.location.pathname.split('/');
-    var recUrl = process.env.VUE_APP_RECOMMENDATION_SVC_URL + "/v1/recommendations/" + pathArray[pathArray.length-1] + "?api_key=" + localStorage.getItem("RECOMMENDATION_KEY");;
+    var recUrl = process.env.VUE_APP_RECOMMENDATION_SVC_URL + "/recommendations/" + pathArray[pathArray.length-1] + "?api_key=" + localStorage.getItem("RECOMMENDATION_KEY");;
 
     axios({ method: "GET", "url": recUrl, headers: {"x-api-key": localStorage.getItem("RECOMMENDATION_KEY")}}).then(result => {
         var recommendations = result.data;
@@ -41,7 +41,7 @@ export default {
         if (recommendations != undefined && recommendations.length > 0) {
             
             for (var i = 0; i < recommendations.length; i++) {
-                var prodUrl = process.env.VUE_APP_PRODUCT_SVC_URL + "/v1/product/" + recommendations[i] + "?api_key=" + localStorage.getItem("PRODUCT_KEY");;
+                var prodUrl = process.env.VUE_APP_PRODUCT_SVC_URL + "/product/" + recommendations[i] + "?api_key=" + localStorage.getItem("PRODUCT_KEY");;
                 axios({ method: "GET", "url": prodUrl, headers: {"x-api-key": localStorage.getItem("PRODUCT_KEY")}}).then(result => {
                     this.products.push(result.data);
                 }).catch(function (error) {

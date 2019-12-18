@@ -108,7 +108,7 @@ export default {
     mounted() {
 
         var router = this.$router;
-        var url = process.env.VUE_APP_PRODUCT_SVC_URL + "/v1/products?api_key=" + localStorage.getItem("PRODUCT_KEY");
+        var url = process.env.VUE_APP_PRODUCT_SVC_URL + "/products?api_key=" + localStorage.getItem("PRODUCT_KEY");
 
         axios({ method: "GET", "url": url, headers: {"x-api-key": localStorage.getItem("PRODUCT_KEY")}}).then(result => {
             this.$root.showcaseProducts = result.data;
@@ -129,7 +129,7 @@ export default {
             router.push('/config');
         });
 
-        axios({ method: "GET", "url": "/parameters/v1/SHOW_HIPSTER_KIDS"}).then(result => {
+        axios({ method: "GET", "url": "/parameters/SHOW_HIPSTER_KIDS"}).then(result => {
             this.showHipsterKids = (result.data.result.toLowerCase() == "true");
             console.log("SHOW_HIPSTER_KIDS: " +  this.showHipsterKids);
         })
@@ -141,7 +141,7 @@ export default {
     },
     methods: {
         refreshPrice(product) {
-            var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/v1/convert?api_key=" + localStorage.getItem("PRODUCT_KEY");
+            var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/convert?api_key=" + localStorage.getItem("PRODUCT_KEY");
             var me = this;
             axios.post(url, {
                 priceUsd: product.priceUsd,

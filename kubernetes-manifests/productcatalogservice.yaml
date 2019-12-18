@@ -14,7 +14,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: eu.gcr.io/apigee-quest-v2/productcatalogservice:latest
+        image: eu.gcr.io/tyler-240211/productcatalogservice:latest
         imagePullPolicy: Always
         ports:
           - name: http

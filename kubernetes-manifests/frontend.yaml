@@ -15,10 +15,10 @@ spec:
         app: frontend
         version: v1
     spec:
-      terminationGracePeriodSeconds: 4
+      terminationGracePeriodSeconds: 6
       containers:
       - name: server
-        image: eu.gcr.io/apigee-quest-v2/frontend:latest
+        image: eu.gcr.io/tyler-240211/frontend:latest
         imagePullPolicy: Always
         ports:
           - name: http
@@ -49,7 +49,7 @@ spec:
       terminationGracePeriodSeconds: 4
       containers:
       - name: server
-        image: eu.gcr.io/apigee-quest-v2/frontend:latest
+        image: eu.gcr.io/tyler-240211/frontend:latest
         imagePullPolicy: Always
         ports:
           - name: http
@@ -70,5 +70,23 @@ spec:
   ports:
   - port: 8080
     name: http
+  selector:
+    app: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-internal
+  annotations:
+    cloud.google.com/load-balancer-type: "Internal"
+  labels:
+    app: frontend-internal
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
   selector:
     app: frontend

@@ -30,7 +30,7 @@ export default {
     },
     mounted() {
         var router = this.$router;
-        var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/v1/currencies?api_key=" + localStorage.getItem("CURRENCY_KEY");
+        var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/currencies?api_key=" + localStorage.getItem("CURRENCY_KEY");
         var key = localStorage.getItem("CURRENCY_KEY");
         axios({ method: "GET", "url": url, "headers": {"x-api-key": key}}).then(result => {
             this.currencies = result.data;
@@ -49,7 +49,7 @@ export default {
             //     if (this.$root.currency == "USD")
             //         product.price = product.priceUsd;
             //     else {
-            //         var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/v1/convert?api_key=" + localStorage.getItem("PRODUCT_KEY");
+            //         var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/convert?api_key=" + localStorage.getItem("PRODUCT_KEY");
             //         axios.post(url, {
             //             priceUsd: product.priceUsd,
             //             toCurrency: this.$root.currency

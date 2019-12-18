@@ -61,7 +61,7 @@ export default {
   mounted() {
         var router = this.$router;
         var pathArray = window.location.pathname.split('/');
-        var url = process.env.VUE_APP_PRODUCT_SVC_URL + "/v1/product/" + pathArray[pathArray.length-1] + "?api_key=" + localStorage.getItem("PRODUCT_KEY");;
+        var url = process.env.VUE_APP_PRODUCT_SVC_URL + "/product/" + pathArray[pathArray.length-1] + "?api_key=" + localStorage.getItem("PRODUCT_KEY");;
 
         axios({ method: "GET", "url": url, headers: {"x-api-key": localStorage.getItem("PRODUCT_KEY")}}).then(result => {
             this.product = result.data;
@@ -74,7 +74,7 @@ export default {
   },
     methods: {
         refreshPrice(product) {
-            var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/v1/convert?api_key=" + localStorage.getItem("PRODUCT_KEY");
+            var url = process.env.VUE_APP_CURRENCY_SVC_URL + "/convert?api_key=" + localStorage.getItem("PRODUCT_KEY");
             var me = this;
             axios.post(url, {
                 priceUsd: product.priceUsd,

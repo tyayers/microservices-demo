@@ -11,10 +11,10 @@ spec:
       labels:
         app: currencyservice
     spec:
-      terminationGracePeriodSeconds: 6
+      terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: eu.gcr.io/apigee-quest-v2/currencyservice:latest
+        image: eu.gcr.io/tyler-240211/currencyservice:latest
         imagePullPolicy: Always
         ports:
           - name: http

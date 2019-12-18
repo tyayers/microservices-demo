@@ -25,13 +25,13 @@ app.use(cors());
 app.use(morgan('combined'));
 
 // defining an endpoint to return all ads
-app.get('/currencyservice/v1/currencies', (req, res) => {
+app.get('/currencies', (req, res) => {
 
   var data = JSON.parse(fs.readFileSync("data/currency_conversion.json"));  
   res.send(Object.keys(data));
 });
 
-app.post('/currencyservice/v1/convert', (req, res) => {  
+app.post('/convert', (req, res) => {  
   console.log(req.body);
   var data = JSON.parse(fs.readFileSync("data/currency_conversion.json"));
 
@@ -44,7 +44,7 @@ app.post('/currencyservice/v1/convert', (req, res) => {
   res.send(result);
 });
 
-app.get('/currencyservice/v1/health', (req, res) => {
+app.get('/health', (req, res) => {
 
   res.send("Service is healthy.");
 });
